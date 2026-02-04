@@ -20,13 +20,13 @@ def get_gmail(short=False, unread=False):
     # created automatically when the authorization flow completes for the first
     # time.
     if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file("token.json", GMAIL_SCOPE)
+        creds = Credentials.from_authorized_user_file("token.json", [GMAIL_SCOPE])
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_config(client_config, GMAIL_SCOPE)
+            flow = InstalledAppFlow.from_client_config(client_config, [GMAIL_SCOPE])
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open("token.json", "w") as token:
@@ -48,10 +48,12 @@ def get_gmail(short=False, unread=False):
             return
         print("Messages:")
         for msg in messages:
-            msg_data = service.users().messages().get(userId="me", id=msg["id"]).execute()
+            msg_data = (
+                service.users().messages().get(userId="me", id=msg["id"]).execute()
+            )
             print("")
             print(f" :: ID: {msg_data['id']}")
-            print(f"    Subject: {msg_data['snippet'][:50]}...")
+            print(f"    Subject: {msg_data['snippet'][:100]}...")
 
     except HttpError as error:
         # TODO(developer) - Handle errors from gmail API.
