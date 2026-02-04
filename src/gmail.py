@@ -35,7 +35,12 @@ def get_gmail(short=False, unread=False):
     try:
         # Call the Gmail API
         service = build("gmail", "v1", credentials=creds)
-        results = service.users().messages().list(userId="me", maxResults=limit, labelIds=["INBOX"], q=query).execute()
+        results = (
+            service.users()
+            .messages()
+            .list(userId="me", maxResults=limit, labelIds=["INBOX"], q=query)
+            .execute()
+        )
         messages = results.get("messages", [])
 
         if not messages:
