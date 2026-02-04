@@ -13,5 +13,5 @@ repos:
         -   id: check-yaml
         -   id: check-json
 
-files: '^.*\.py$'
+files: 'src/^.*\.py$'
 exclude: 'venv'

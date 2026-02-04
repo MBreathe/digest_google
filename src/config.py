@@ -23,6 +23,6 @@ client_config = {
         "token_uri": TOKEN_URI,
         "auth_provider_x509_cert_url": AUTH_PROVIDER_X509_CERT_URL,
         "client_secret": CLIENT_SECRET,
-        "redirect_uris": [REDIRECT_URIS]
+        "redirect_uris": [REDIRECT_URIS],
     }
 }
