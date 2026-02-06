@@ -1,3 +1,4 @@
 .env
 .idea
 token.json
+**/__pycache__/
