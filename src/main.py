@@ -1,6 +1,5 @@
 import os.path
-from config import client_config
-from config import SCOPES
+from config import client_config, SCOPES
 from google_api import get_gmail, get_gcalendar
 
 from google.auth.transport.requests import Request
