@@ -3,7 +3,7 @@ import datetime
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-
+# Adjust edge cases and write tests
 def get_gcalendar(creds):
     try:
         service = build("calendar", "v3", credentials=creds)
@@ -40,7 +40,7 @@ def get_gcalendar(creds):
             print(f"    :: ID: {event["id"]}")
             print(f"        TITLE: {event["summary"]}")
             print(f"        TIME: {start_date} {start_time} - {end_date} {end_time}")
-            print(f"        LOCATION: {event["location"]}")
+            print(f"        LOCATION: {event["location"] if 'location' in event else 'N/A'}")
 
     except HttpError as error:
         # TODO(developer) - Handle errors from gmail API.
